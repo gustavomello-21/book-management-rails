@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  database:
+    container_name: "database"
+    image: "postgres:9.6.9"
+    environment:
+      POSTGRES_PASSWORD: "12345678"
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    networks:
+      - webserver
+    # volumes:
+    #   - /var/run/postgresql:/var/run/postgresql
+  webserver:
+    container_name: "webserver"
+    build: "."
+    image: "webserver:latest"
+    tty: true
+    depends_on:
+      - "database"
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    volumes:
+      - ".:/webserver"
+    networks:
+      - webserver
+networks:
+  webserver:
+    driver: "bridge"

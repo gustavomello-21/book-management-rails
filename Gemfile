@@ -7,7 +7,6 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.4"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -45,4 +44,9 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+  gem "sqlite3", "~> 1.4"
+end
+
+group :production do
+  gem 'pg', '~> 1.4', '>= 1.4.4'
 end
